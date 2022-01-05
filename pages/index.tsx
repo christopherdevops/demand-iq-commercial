@@ -5,6 +5,7 @@ import GlobalContext from '../context/GlobalContext'
 
 const Start = dynamic(() => import('../shared/start'))
 const Experience = dynamic(() => import('../shared/experience'))
+const Confirm = dynamic(() => import('../shared/confirm'))
 
 const Home: NextPage = () => {
   const gContext = React.useContext(GlobalContext)
@@ -17,6 +18,10 @@ const Home: NextPage = () => {
 
       {gContext.step === 1 && (
         <Experience />
+      )}
+
+      {gContext.step === 2 && (
+        <Confirm />
       )}
     </>
   )
