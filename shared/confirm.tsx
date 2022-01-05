@@ -37,9 +37,9 @@ const Confirm = () => {
             <Typography variant="h5" color="white" pb={4} sx={{ fontWeight: 700 }}>Does this appear to be the right rooftop?</Typography>
 
             <Box display="flex" flexDirection={{ xs: 'column', sm: 'row' }} sx={{ gap: 2 }}>
-              <Button variant="outlined" sx={{ bgcolor: 'white', minWidth: 150 }}>No</Button>
+              <Button variant="outlined" sx={{ bgcolor: 'white', minWidth: 150 }} onClick={() => gContext.setStep((prev) => prev - 1)}>No</Button>
 
-              <Button variant="outlined" sx={{ bgcolor: 'white', minWidth: 150 }}>Yes</Button>
+              <Button variant="outlined" sx={{ bgcolor: 'white', minWidth: 150 }} onClick={() => gContext.setStep((prev) => prev + 1)}>Yes</Button>
             </Box>
           </Box>
         </Box>
