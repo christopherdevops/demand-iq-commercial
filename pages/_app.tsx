@@ -12,6 +12,8 @@ import createEmotionCache from '../utility/createEmotionCache';
 import defaultThemeOptions from '../styles/themes/defaultThemeOptions';
 import '../styles/globals.css';
 
+import { GlobalContextProvider } from "context/GlobalContext";
+
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
@@ -27,7 +29,10 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
-        <Component {...pageProps} />
+
+        <GlobalContextProvider>
+          <Component {...pageProps} />
+        </GlobalContextProvider>
       </ThemeProvider>
     </CacheProvider>
   );
