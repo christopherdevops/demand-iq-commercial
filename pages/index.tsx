@@ -11,7 +11,6 @@ const Home: NextPage = () => {
 
   return (
     <>
-
       {gContext.step === 0 && (
         <Start />
       )}
