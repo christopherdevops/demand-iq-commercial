@@ -1,5 +1,6 @@
 import React from 'react'
 import type { NextPage } from 'next'
+import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import GlobalContext from '../context/GlobalContext'
 
@@ -12,6 +13,11 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>DIQ Commercial</title>
+        <meta name="description" content="Demand IQ For Commercial Solar" />
+      </Head>
+
       {gContext.step === 0 && (
         <Start />
       )}
