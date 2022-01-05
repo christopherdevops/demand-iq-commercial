@@ -9,7 +9,9 @@ const Experience = () => {
     <>
       <Typography variant="h1">Experience</Typography>
 
-      <Button onClick={()=> gContext.setStep(0)}>Back</Button>
+      <Button onClick={() => gContext.setStep((prev) => prev - 1)}>Back</Button>
+
+      <Button onClick={() => gContext.setStep((prev) => prev + 1)}>Next</Button>
     </>
   )
 }
