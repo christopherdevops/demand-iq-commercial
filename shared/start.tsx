@@ -72,9 +72,7 @@ const Start = () => {
                     />
                   </Box>
                   <CustomButton
-                    textTransform='none'
-                    variant='contained'
-                    sx={{ height: '48px' }}
+                    sx={{ height: '48px', textTransform: 'none' }}
                     onClick={() => gContext.setStep(1)}
                   >
                     Start analysis

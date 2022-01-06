@@ -41,11 +41,11 @@ const Experience = () => {
 
         <Box
           width={1}
-          height={1}
           bgcolor="primary.main"
           display="flex"
           flexDirection="column"
           alignItems="center"
+          flex="1 1 0"
         >
           <Box
             width={0.7}

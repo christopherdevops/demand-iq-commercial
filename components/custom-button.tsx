@@ -4,7 +4,7 @@ import { makeStyles } from '@mui/styles'
 import clsx from 'clsx'
 
 interface Props extends ButtonProps {
-  textTransform?: 'uppercase' | 'capitalize' | 'lowercase' | 'none';
+  kind ?: 'default' | 'primary' | 'secondary' | null;
 }
 
 const defaultStyles = makeStyles({
@@ -13,13 +13,13 @@ const defaultStyles = makeStyles({
     boxShadow: 'none',
 
     borderRadius: '50px',
+
     padding: '12px 45px',
 
     fontWeight: '900',
     fontSize: '16px',
     lineHeight: '22px',
     letterSpacing: '0.005em',
-    textTransform: (props: Props) => props.textTransform ?? 'uppercase',
 
     '&:hover': {
       boxShadow: 'none'
@@ -27,12 +27,47 @@ const defaultStyles = makeStyles({
   }
 })
 
-const CusttomButton = ({ className, textTransform, ...props }: Props) => {
-  const defaultClasses = defaultStyles({ textTransform })
+const secondaryStyles = makeStyles({
+  root: {
+    color: '#fff',
+    boxShadow: 'none',
+
+    border: '1px solid #fff',
+    borderRadius: '50px',
+
+    padding: '12px 24px',
+
+    fontWeight: '900',
+    fontSize: '16px',
+    lineHeight: '22px',
+    letterSpacing: '0.005em',
+
+    '&:hover': {
+      color: '#000',
+      backgroundColor: '#fff',
+      boxShadow: 'none'
+    }
+  }
+})
+
+const CusttomButton = ({ className, kind, ...props }: Props) => {
+  const defaultClasses = defaultStyles()
+  const secondaryClasses = secondaryStyles()
+
+  let activeClasses = defaultClasses
+
+  switch (kind) {
+    case 'secondary':
+      activeClasses = secondaryClasses
+      break
+
+    default:
+  }
 
   return (
     <Button
-      className={clsx(defaultClasses.root, className)}
+      variant={props.variant ?? 'contained'}
+      className={clsx(activeClasses.root, className)}
       {...props}
     />
   )
