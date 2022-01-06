@@ -2,7 +2,7 @@ import React from 'react'
 
 const contextValues = () => {
   // Step
-  const [step, setStep] = React.useState(0)
+  const [step, setStep] = React.useState(3)
 
   return {
     step,
