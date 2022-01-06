@@ -8,7 +8,12 @@ const Start = dynamic(() => import('../shared/start'))
 const Experience = dynamic(() => import('../shared/experience'))
 const Confirm = dynamic(() => import('../shared/confirm'))
 const Inform = dynamic(() => import('../shared/inform'))
+const Checking = dynamic(() => import('../shared/checking'))
+const Report = dynamic(() => import('../shared/report'))
+const Detail = dynamic(() => import('../shared/detail'))
 const Contact = dynamic(() => import('../shared/contact'))
+const Appointment = dynamic(() => import('../shared/appointment'))
+const Bill = dynamic(() => import('../shared/bill'))
 
 const Home: NextPage = () => {
   const gContext = React.useContext(GlobalContext)
@@ -37,7 +42,27 @@ const Home: NextPage = () => {
       )}
 
       {gContext.step === 4 && (
+        <Checking />
+      )}
+
+      {gContext.step === 5 && (
+        <Report />
+      )}
+
+      {gContext.step === 6 && (
+        <Detail />
+      )}
+
+      {gContext.step === 7 && (
         <Contact />
+      )}
+
+      {gContext.step === 8 && (
+        <Appointment />
+      )}
+
+      {gContext.step === 9 && (
+        <Bill />
       )}
     </>
   )

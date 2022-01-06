@@ -1,11 +1,23 @@
 import React from 'react'
 import { Box, Typography, useMediaQuery } from '@mui/material'
+import GlobalContext from '../context/GlobalContext'
 
 const DIQHeader = () => {
+  const gContext = React.useContext(GlobalContext)
+
   const visibleText = useMediaQuery('(min-width: 270px)')
 
   return (
-    <Box width={1} height={80} py={2.5} px={{ xs: 2.5, sm: 3.75, md: 6.25 }} display="flex" alignItems="center">
+    <Box
+      width={1}
+      height={80}
+      px={{ xs: 2.5, sm: 3.75, md: 6.25 }}
+      py={2.5}
+      display="flex"
+      alignItems="center"
+      onClick={ () => gContext.setStep(0) }
+      sx={{ cursor: 'pointer' }}
+    >
       <img src="/logo.png" alt="Solar Company Logo" style={{ maxWidth: 40 }} />
 
       {visibleText && (

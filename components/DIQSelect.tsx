@@ -2,7 +2,7 @@ import React from 'react'
 import { Select, SelectProps as MuiSelectProps } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import clsx from 'clsx'
-import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined'
 
 const selectStyle = makeStyles({
   root: {
