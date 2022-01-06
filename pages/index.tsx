@@ -7,6 +7,7 @@ import GlobalContext from '../context/GlobalContext'
 const Start = dynamic(() => import('../shared/start'))
 const Experience = dynamic(() => import('../shared/experience'))
 const Confirm = dynamic(() => import('../shared/confirm'))
+const Inform = dynamic(() => import('../shared/inform'))
 const Contact = dynamic(() => import('../shared/contact'))
 
 const Home: NextPage = () => {
@@ -32,6 +33,10 @@ const Home: NextPage = () => {
       )}
 
       {gContext.step === 3 && (
+        <Inform />
+      )}
+
+      {gContext.step === 4 && (
         <Contact />
       )}
     </>
