@@ -13,23 +13,23 @@ const selectStyle = makeStyles({
     borderColor: 'rgba(255, 255, 255, 0.5)',
 
     '&:hover': {
-      borderColor: 'rgba(255, 255, 255, 0.75)'
+      borderColor: 'rgba(255, 255, 255, 0.75)',
     },
 
     '&$focused': {
-      borderColor: 'rgba(255, 255, 255, 0.75)'
+      borderColor: 'rgba(255, 255, 255, 0.75)',
     },
 
     '& .MuiOutlinedInput-notchedOutline': {
-      border: 0
+      border: 0,
     },
 
     '& .MuiSvgIcon-root': {
-      color: 'white'
-    }
+      color: 'white',
+    },
   },
 
-  focused: {}
+  focused: {},
 })
 
 const DIQSelect = (props: MuiSelectProps) => {
@@ -38,7 +38,12 @@ const DIQSelect = (props: MuiSelectProps) => {
   const selectClasses = selectStyle()
 
   return (
-    <Select variant="outlined" className={clsx(selectClasses.root, className)} IconComponent={ExpandMoreOutlinedIcon} {...mainProps} />
+    <Select
+      variant='outlined'
+      className={clsx(selectClasses.root, className)}
+      IconComponent={ExpandMoreOutlinedIcon}
+      {...mainProps}
+    />
   )
 }
 

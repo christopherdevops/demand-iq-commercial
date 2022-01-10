@@ -1,33 +1,12 @@
 import React from 'react'
 import { Button, ButtonProps } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import clsx from 'clsx'
 
 interface Props extends ButtonProps {
-  kind ?: 'default' | 'primary' | 'secondary' | null;
+  kind?: 'default' | 'primary' | 'secondary' | null
 }
 
 const defaultStyles = makeStyles({
-  root: {
-    color: '#fff',
-    boxShadow: 'none',
-
-    borderRadius: '50px',
-
-    padding: '12px 45px',
-
-    fontWeight: '900',
-    fontSize: '16px',
-    lineHeight: '22px',
-    letterSpacing: '0.005em',
-
-    '&:hover': {
-      boxShadow: 'none'
-    }
-  }
-})
-
-const secondaryStyles = makeStyles({
   root: {
     color: '#fff',
     boxShadow: 'none',
@@ -45,32 +24,46 @@ const secondaryStyles = makeStyles({
     '&:hover': {
       color: '#000',
       backgroundColor: '#fff',
-      boxShadow: 'none'
-    }
-  }
+      boxShadow: 'none',
+    },
+  },
 })
 
-const CusttomButton = ({ className, kind, ...props }: Props) => {
+const secondaryStyles = makeStyles({
+  root: {
+    color: '#fff',
+    boxShadow: 'none',
+
+    borderRadius: '50px',
+
+    padding: '12px 45px',
+
+    fontWeight: '900',
+    fontSize: '16px',
+    lineHeight: '22px',
+    letterSpacing: '0.005em',
+
+    '&:hover': {
+      boxShadow: 'none',
+    },
+  },
+})
+
+const DIQButton = ({ className, kind, ...props }: Props) => {
   const defaultClasses = defaultStyles()
   const secondaryClasses = secondaryStyles()
 
-  let activeClasses = defaultClasses
+  let classes = defaultClasses
 
   switch (kind) {
     case 'secondary':
-      activeClasses = secondaryClasses
+      classes = secondaryClasses
       break
 
     default:
   }
 
-  return (
-    <Button
-      variant={props.variant ?? 'contained'}
-      className={clsx(activeClasses.root, className)}
-      {...props}
-    />
-  )
+  return <Button variant={props.variant ?? 'contained'} className={classes.root} {...props} />
 }
 
-export default CusttomButton
+export default DIQButton

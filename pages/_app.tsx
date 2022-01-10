@@ -7,29 +7,33 @@ import { CacheProvider, EmotionCache } from '@emotion/react'
 import defaultTheme from '../styles/themes/defaultTheme'
 import createEmotionCache from '../utility/createEmotionCache'
 import { GlobalContextProvider } from '../context/GlobalContext'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
 
 interface MyAppProps extends AppProps {
-  emotionCache?: EmotionCache;
+  emotionCache?: EmotionCache
 }
 
-export default function MyApp (props: MyAppProps) {
+export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
-      <ThemeProvider theme={defaultTheme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <ThemeProvider theme={defaultTheme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
 
-        <GlobalContextProvider>
-        <Component {...pageProps} />
-        </GlobalContextProvider>
-      </ThemeProvider>
+          <GlobalContextProvider>
+            <Component {...pageProps} />
+          </GlobalContextProvider>
+        </ThemeProvider>
+      </LocalizationProvider>
     </CacheProvider>
   )
 }

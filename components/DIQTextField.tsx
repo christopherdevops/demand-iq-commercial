@@ -11,16 +11,16 @@ const textFieldStyle = makeStyles({
     borderColor: 'rgba(255, 255, 255, 0.5)',
 
     '&:hover': {
-      borderColor: 'rgba(255, 255, 255, 0.75)'
+      borderColor: 'rgba(255, 255, 255, 0.75)',
     },
 
     '&$focused': {
-      borderColor: 'rgba(255, 255, 255, 1)'
+      borderColor: 'rgba(255, 255, 255, 1)',
     },
 
     '& .MuiInputAdornment-root .MuiTypography-root': {
-      color: 'white'
-    }
+      color: 'white',
+    },
   },
 
   focused: {},
@@ -30,8 +30,8 @@ const textFieldStyle = makeStyles({
   error: {},
 
   notchedOutline: {
-    border: 0
-  }
+    border: 0,
+  },
 })
 
 const DIQTextField = (props: MuiTextFieldProps) => {
@@ -39,9 +39,7 @@ const DIQTextField = (props: MuiTextFieldProps) => {
 
   const textFieldClasses = textFieldStyle()
 
-  return (
-    <TextField variant="outlined" InputProps={{ ...InputProps, classes: textFieldClasses }} {...mainProps} />
-  )
+  return <TextField variant='outlined' InputProps={{ ...InputProps, classes: textFieldClasses }} {...mainProps} />
 }
 
 export default DIQTextField

@@ -3,19 +3,17 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 import createEmotionServer from '@emotion/server/create-instance'
 import defaultTheme from '../styles/themes/defaultTheme'
 import createEmotionCache from '../utility/createEmotionCache'
+import { ServerStyleSheets } from '@mui/styles'
 
 export default class MyDocument extends Document {
-  render () {
+  render() {
     return (
-      <Html lang="en">
+      <Html lang='en'>
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={defaultTheme.palette.primary.main} />
-          <link rel="shortcut icon" href="/favicon.ico" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
+          <meta name='theme-color' content={defaultTheme.palette.primary.main} />
+          <link rel='shortcut icon' href='/favicon.ico' />
+          <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap' />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}
         </Head>
@@ -54,6 +52,7 @@ MyDocument.getInitialProps = async (ctx) => {
   // 3. app.render
   // 4. page.render
 
+  const sheets = new ServerStyleSheets()
   const originalRenderPage = ctx.renderPage
 
   // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
@@ -64,9 +63,9 @@ MyDocument.getInitialProps = async (ctx) => {
   ctx.renderPage = () =>
     originalRenderPage({
       enhanceApp: (App: any) =>
-        function EnhanceApp (props) {
-          return <App emotionCache={cache} {...props} />
-        }
+        function EnhanceApp(props) {
+          return sheets.collect(<App emotionCache={cache} {...props} />)
+        },
     })
 
   const initialProps = await Document.getInitialProps(ctx)
@@ -84,6 +83,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
   return {
     ...initialProps,
-    emotionStyleTags
+    styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
+    emotionStyleTags,
   }
 }

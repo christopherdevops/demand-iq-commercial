@@ -6,5 +6,8 @@
         "bgcolor",
         "clsx",
         "fontsource"
-    ]
+    ],
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

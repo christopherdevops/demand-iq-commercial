@@ -1,69 +1,70 @@
 import React from 'react'
-import { Box, TextField, Typography } from '@mui/material'
+import { Box, TextField, TextFieldProps, Typography } from '@mui/material'
 import DIQHeader from '../components/DIQHeader'
+import DIQLiveHelp from '../components/DIQLiveHelp'
+import DIQTextField from '../components/DIQTextField'
+import DIQButton from '../components/DIQButton'
 import GlobalContext from '../context/GlobalContext'
-import CusttomButton from '../components/custom-button'
+import { setValues } from '../api/me'
+
+const ContactTextField = ({ sx, ...props }: TextFieldProps) => (
+  <DIQTextField {...props} sx={{ width: 1, mb: 4, ...sx }} />
+)
 
 const Contact = () => {
   const gContext = React.useContext(GlobalContext)
 
+  const handleChartBtnClick = () => {
+    setValues({ step: gContext.step + 1 })
+    gContext.setStep((prev) => prev + 1)
+  }
+
   return (
     <>
-      <Box
-        width={1}
-        height="100vh"
-        display="flex"
-        flexDirection="column"
-        sx={{ minWidth: 200 }}
-      >
+      <Box width={1} height='100vh' display='flex' flexDirection='column' sx={{ minWidth: 200 }}>
         <DIQHeader />
 
         <Box
           width={1}
-          bgcolor="primary.main"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          flex="1 1 0"
+          bgcolor='primary.main'
+          display='flex'
+          flexDirection='column'
+          alignItems='center'
+          flex='1 1 0'
+          p={10.5}
         >
           <Box
-            width={{ xs: 0.7, sm: 0.6, md: 0.5, lg: 0.4, xl: 0.3 }}
+            width={{ xs: 0.7, sm: 0.6, md: 0.5, lg: 0.4, xl: 0.35 }}
             height={1}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
           >
-            <Typography variant="h5" color="white" sx={{ fontWeight: 700, mt: 10.5, mb: 8 }}>
+            <Typography variant='h5' color='white' sx={{ fontWeight: 700 }}>
               How do we get in touch with you about finalizing your solar quote?
             </Typography>
 
-            <Box width={1}>
-              <Box
-                mb={4}
-                display="flex"
-                flexDirection={{ xs: 'column', sm: 'column', md: 'row' }}
-              >
-                <TextField label="First name" sx={{ width: 1, mb: { xs: 4, sm: 4, md: 0 }, mr: { xs: 0, sm: 0, md: 3 } }} />
+            <Box width={1} pt={8} pb={4}>
+              <Box display='flex' flexDirection={{ xs: 'column', sm: 'column', md: 'row' }}>
+                <ContactTextField placeholder='First name' sx={{ mr: { xs: 0, sm: 0, md: 3 } }} />
 
-                <TextField label="Last name" sx={{ width: 1 }} />
+                <ContactTextField placeholder='Last name' />
               </Box>
 
-              <TextField label="Company Name" sx={{ width: 1, mb: 4 }} />
+              <ContactTextField placeholder='Company name' />
 
-              <TextField label="Email" sx={{ width: 1, mb: 4 }} />
+              <ContactTextField placeholder='Email' />
 
-              <TextField label="Phone" sx={{ width: 1, mb: 4 }} />
+              <ContactTextField placeholder='Phone' />
             </Box>
 
-            <CusttomButton
-              kind="secondary"
-              sx={{ width: 'fit-content', mt: 3 }}
-              onClick={() => gContext.setStep((prev) => prev + 1)}
-            >
+            <DIQButton sx={{ width: 'fit-content' }} onClick={handleChartBtnClick}>
               Let's Chart!
-            </CusttomButton>
+            </DIQButton>
           </Box>
         </Box>
+
+        <DIQLiveHelp />
       </Box>
     </>
   )

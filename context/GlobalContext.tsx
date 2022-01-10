@@ -6,7 +6,7 @@ const contextValues = () => {
 
   return {
     step,
-    setStep
+    setStep,
   }
 }
 
